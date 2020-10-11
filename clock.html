@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="clock.css">
+
+</head>
+<body>
+   
+<div class="clock">
+    <div id="MyDateDisplay" class="year" onload="showTime()"></div>
+	<div id="MyClockDisplay" class="date" onload="showTime()"></div>
+</div>
+</body>
+
+<script>
+	function showTime(){
+    var date = new Date();
+
+    var yr = date.getFullYear();
+    var  mo = date.getMonth();
+    var dnum = date.getDate();
+    var dname = date.getDay();
+        
+    
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    var meridian = "AM";
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        meridian = "PM";
+    }
+    
+
+    h = (h < 10) ? "0" + h : h;
+
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+
+
+ var months = ["January", "February", "March", "April", "May", "June", "July", "Augest", "September", "October", "November", "December"];
+ var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    var datee = week[dname] + "," + months[mo] + " " + dnum +","+yr;
+    document.getElementById("MyDateDisplay").innerText = datee;
+    
+    var time = h + ":" + m + ":" + s + " " + meridian;
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;//mozilla
+    
+ setTimeout(showTime, 1000);
+    
+}
+showTime();
+</script>
+</html>
